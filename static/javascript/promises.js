@@ -34,13 +34,21 @@ const mockFetch = function(url, accept) {
     })
 }
 
-let data = [];
+/* let data = [];
 
 mockFetch('https://pokeapi.co/api/v2/pokemon/ditto', true)
     .then((apiResponse) => {
         data = apiResponse;
         console.log(data)
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err)); */
 
-console.log(data);
+const doStuff = async() => {
+    try {
+        const apiResponse = await mockFetch('https://pokeapi.co/api/v2/pokemon/ditto', false)
+        console.log(apiResponse)   
+    } catch (err) {
+        console.log(err)
+    }
+}
+doStuff()
