@@ -15,7 +15,6 @@
 
 <body>
 
-    
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -37,13 +36,21 @@
     </nav>
 
     <main class="container mt-5">
-        <div class="row">
-            <div class="col-9">
-                <div id="people"></div>
+        <!-- b4-form-inline -->
+        <form class="form-inline" id="userSearch">
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" name="userId" id="" class="form-control" placeholder="Enter a user id" aria-describedby="helpId">
             </div>
-            <div class="col-3">
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Search</button>
+            </div>
+        </form>
+        <div class="row mt-5">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body" id="featured-person">
+                        <p>Enter an id above to search for a user.</p>
                     </div>
                 </div>
             </div>
@@ -62,7 +69,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="./static/javascript/main.js"></script>
+    <script src="./static/javascript/user.js"></script>
 </body>
 
 </html>

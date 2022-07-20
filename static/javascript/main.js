@@ -1,10 +1,12 @@
-fetch('./people.json')
+fetch('/people.json')
     .then((res) => res.json())
     .then((responseData) => displayPeople(responseData.data))
+    .catch((err) => console.log(err))
 
 let peopleEl = document.getElementById('people')
 
 function displayPeople(data) {
+    console.log(data)
 
     for (let person of data) {
         //let newPersonNode = `<div></div>`;
