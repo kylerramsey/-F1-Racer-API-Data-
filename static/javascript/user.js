@@ -1,43 +1,45 @@
-let userSearchForm = document.getElementById('userSearch')
+let standingsSearchForm = document.getElementById('standingsSearch')
 
-userSearchForm.addEventListener('submit', (event) => {
+standingsSearchForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    let formData = new FormData(userSearchForm)
+    let formData = new FormData(standingsSearchForm)
 
-    let userId = formData.get('userId')
+    let seasonId = formData.get('seasonId')
 
-    fetch(`https://my-json-server.typicode.com/Llang8/javascript-day3-june-2022/users/${userId}`)
+    let roundId = formData.get('roundId')
+
+    fetch(`https://ergast.com/api/f1/${seasonId}/${roundId}/driverStandings.json`)
         .then((res) => res.json())
         .then((data) => displaySearchResult(data))
 })
 
-function displaySearchResult(person) {
-    let featuredPersonEl = document.getElementById('featured-person')
-    console.log(person)
+function displaySearchResult(standing) {
+    let featuredstandingEl = document.getElementById('featured-standing')
+    console.log(standing)
 
     // If the object is empty
-    if (Object.values(person).length == 0) {
-        featuredPersonEl.innerHTML = '<p>The user was not found.</p>'
-        return false
+    if (Object.values(standing).length == 0) {
+        featuredstandingEl.innerHTML = '<p>No standings found.</p>'
+        return
     }
 
-    let skillsHTML = ''
+    let standingHTML = `
 
-    for (let skill in person.skills) {
-        skillsHTML += `
-            <li>${skill}: ${person.skills[skill]}</li>
+    `
+
+    for (let i = 0; i < 20; i++) {
+        standingHTML += `
+            <tr>
+                <th scope="row">${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['position']}</th>
+                <td>${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['Driver']['givenName']} ${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['Driver']['familyName']}</td>
+                <td>${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['Driver']['nationality']}</td>
+                <td>${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['Constructors'][0]['name']}</td>
+                <td>${standing['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][i]['points']}</td>
+            </tr>
         `
     }
 
-    let personHTML = `
-        <h2>${person.name}</h2>
-        <p>Title: ${person.title}</p>
-        <h3>Skills:</h3>
-        <ul>
-            ${skillsHTML}
-        </ul>
-    `
-
-    featuredPersonEl.innerHTML = personHTML
+    featuredstandingEl.innerHTML = standingHTML
 }
+

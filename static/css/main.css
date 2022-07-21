@@ -1,7 +1,8 @@
-#people .card {
-    cursor: pointer;
-}
-
 #people .card:hover {
     background-color: #E2E2E2;
 }
+
+body {
+    background-image: linear-gradient(to right, red , yellow);
+  }
+
